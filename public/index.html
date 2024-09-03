@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Real-Time Task Manager</h1>
+        <div class="metric">CPU Usage: <span id="cpuUsage"></span>%</div>
+        <div class="metric">Memory Usage: <span id="memoryUsage"></span>%</div>
+        <div class="metric">Free Memory: <span id="freeMemory"></span> GB</div>
+        <div class="metric">Total Memory: <span id="totalMemory"></span> GB</div>
+        <h2>Disk Usage</h2>
+        <div id="diskUsage"></div>
+    </div>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script src="script.js">
+    // const socket = io();
+    // socket.on('systemData',(data)=>{
+    //     console.log(data)
+    // })
+</script>
+</html>

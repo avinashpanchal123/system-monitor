@@ -1,7 +1,7 @@
 const express = require('express');
 const os = require('os-utils');
 const http = require('http')
-const socketIo = require('socket.io');
+const { Server } = require('socket.io');
 // const { cpuUsage } = require('process');
 const app = express();
 
@@ -9,7 +9,7 @@ app.use(express.static('public'))
 
 const server = http.createServer(app);
 
-const io = socketIo(server);
+const io = new Server(server);
 
 io.on('connection', (socket)=>{
     console.log("client connected");
@@ -18,7 +18,8 @@ io.on('connection', (socket)=>{
             const systemData = {
                 cpu : cpuUsage*100,
                 memory : ( 1 - os.freememPercentage())*100,
-                totalMemory : os.totalmem()
+                totalMemory : (os.totalmem()) /1024,
+                freeMemory: (os.freemem()) / 1024,
             };
             socket.emit('systemData', systemData)
         })
@@ -31,7 +32,7 @@ io.on('connection', (socket)=>{
 })
 
 
-app.listen(3000, ()=>{
+server.listen(3000, ()=>{
     console.log(`listening on port 3000`);
     
 })
